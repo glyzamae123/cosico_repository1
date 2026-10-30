@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover helpful services and fresh ideas on the Luma blog.">
+    <title>Home | Luma</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
+
+        body {
+            margin: 0;
+            color: #183153;
+            background: #f7faff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background: #fff;
+            box-shadow: 0 2px 14px rgb(24 49 83 / 8%);
+        }
+
+        .navbar {
+            width: min(1120px, calc(100% - 40px));
+            min-height: 76px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: #1268d3;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .menu a {
+            color: #52647a;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 160ms ease;
+        }
+
+        .menu a:hover,
+        .menu a:focus-visible {
+            color: #1268d3;
+        }
+
+        .menu a:focus-visible,
+        .brand:focus-visible {
+            outline: 3px solid #80bdff;
+            outline-offset: 4px;
+            border-radius: 3px;
+        }
+
+        .hero {
+            min-height: 500px;
+            padding: 80px 20px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #0b63ce, #69b7ff);
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .eyebrow {
+            margin: 0 0 16px;
+            color: #dceeff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(38px, 7vw, 64px);
+            letter-spacing: -2px;
+            line-height: 1.08;
+        }
+
+        .hero p:not(.eyebrow) {
+            max-width: 570px;
+            margin: 20px auto 30px;
+            color: #e8f3ff;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .button {
+            min-height: 48px;
+            padding: 14px 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: #fff;
+            color: #1268d3;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgb(9 53 105 / 20%);
+        }
+
+        .button:focus-visible {
+            outline: 3px solid #183153;
+            outline-offset: 4px;
+        }
+
+        .section {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 82px 0;
+        }
+
+        .section-heading {
+            max-width: 620px;
+            margin: 0 auto 38px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 12px;
+            font-size: clamp(28px, 4vw, 38px);
+            letter-spacing: -1px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: #718096;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            padding: 28px;
+            border: 1px solid #e5edf6;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 8px 24px rgb(24 49 83 / 5%);
+        }
+
+        .card-icon {
+            width: 46px;
+            height: 46px;
+            margin-bottom: 18px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #e8f3ff;
+            color: #1268d3;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 19px;
+        }
+
+        .card p {
+            margin: 0;
+            color: #718096;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        #blogs {
+            padding-top: 0;
+        }
+
+        .blog-card {
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .blog-banner {
+            height: 8px;
+            background: linear-gradient(90deg, #1268d3, #69b7ff);
+        }
+
+        .blog-copy {
+            padding: 26px;
+        }
+
+        .blog-copy span {
+            color: #1268d3;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .blog-copy h3 {
+            margin-top: 12px;
+        }
+
+        .site-footer {
+            padding: 24px 20px;
+            background: #183153;
+            color: #dce6f2;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .site-footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .navbar {
+                width: min(100% - 32px, 1120px);
+                min-height: 68px;
+                gap: 16px;
+            }
+
+            .menu {
+                gap: 18px;
+            }
+
+            .menu a {
+                font-size: 14px;
+            }
+
+            .hero {
+                min-height: 440px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 64px 0;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .navbar {
+                width: calc(100% - 24px);
+            }
+
+            .brand {
+                font-size: 21px;
+            }
+
+            .menu {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main menu">
+            <a class="brand" href="home.html">Luma</a>
+            <div class="menu">
+                <a href="home.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="eyebrow">Ideas for a brighter day</p>
+                <h1>Welcome to Luma</h1>
+                <p>Explore useful services, discover new ideas, and find inspiration for what comes next.</p>
+                <a class="button" href="#services">Explore our services</a>
+            </div>
+        </section>
+
+        <section class="section" id="services">
+            <div class="section-heading">
+                <h2>What we offer</h2>
+                <p>Simple, thoughtful ways to help you learn, grow, and make your next idea happen.</p>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">01</div>
+                    <h3>Creative guidance</h3>
+                    <p>Get helpful ideas and practical direction to turn your plans into meaningful projects.</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">02</div>
+                    <h3>Learning resources</h3>
+                    <p>Explore clear, approachable resources designed to build your skills at your own pace.</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">03</div>
+                    <h3>Community support</h3>
+                    <p>Find encouragement and fresh perspectives as you take the next step on your journey.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="blogs">
+            <div class="section-heading">
+                <h2>From the blog</h2>
+                <p>A little inspiration and practical advice to keep your ideas moving forward.</p>
+            </div>
+            <div class="card-grid">
+                <article class="card blog-card">
+                    <div class="blog-banner" aria-hidden="true"></div>
+                    <div class="blog-copy">
+                        <span>Getting started</span>
+                        <h3>Small steps, big ideas</h3>
+                        <p>Make progress on a new goal by starting with one small, achievable step.</p>
+                    </div>
+                </article>
+                <article class="card blog-card">
+                    <div class="blog-banner" aria-hidden="true"></div>
+                    <div class="blog-copy">
+                        <span>Inspiration</span>
+                        <h3>Make room for creativity</h3>
+                        <p>Simple ways to create space for curiosity and fresh thinking in your day.</p>
+                    </div>
+                </article>
+                <article class="card blog-card">
+                    <div class="blog-banner" aria-hidden="true"></div>
+                    <div class="blog-copy">
+                        <span>Well-being</span>
+                        <h3>Find your own rhythm</h3>
+                        <p>Build routines that feel comfortable, sustainable, and right for you.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Luma. Made for bright ideas.</p>
+    </footer>
+</body>
+</html>

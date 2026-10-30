@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore engineering disciplines and practical planning for the built environment.">
+    <title>Engineering | Built with purpose</title>
+    <style>
+        :root {
+            --sand: #efd094;
+            --terracotta: #a85c37;
+            --ink: #191919;
+            --navy: #00357b;
+            --deep-blue: #1d3c69;
+            --blue: #4d73b0;
+            --mist: #d1dee4;
+            --display-font: "TAN Pearl", "Cormorant Garamond", Georgia, serif;
+            --serif-font: "Cormorant Garamond", Georgia, serif;
+            --script-font: "Halimum", "Brush Script MT", cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 82px;
+        }
+
+        body {
+            margin: 0;
+            background: #fff;
+            color: var(--ink);
+            font-family: var(--serif-font);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            border-bottom: 1px solid var(--mist);
+            background: rgb(255 255 255 / 96%);
+            backdrop-filter: blur(12px);
+        }
+
+        .navbar {
+            width: min(1160px, calc(100% - 48px));
+            min-height: 88px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            flex: 0 0 auto;
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 76px;
+            height: 76px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .menu a {
+            color: var(--deep-blue);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 160ms ease, background 160ms ease;
+        }
+
+        .menu a:hover,
+        .menu a[aria-current="page"] {
+            color: var(--blue);
+        }
+
+        .menu .nav-cta {
+            padding: 12px 17px;
+            border-radius: 4px;
+            background: var(--navy);
+            color: #fff;
+        }
+
+        .menu .nav-cta:hover {
+            background: var(--deep-blue);
+            color: #fff;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--sand);
+            outline-offset: 4px;
+        }
+
+        .hero {
+            min-height: 590px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: var(--deep-blue);
+            color: #fff;
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 48%;
+        }
+
+        .hero::before {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(105deg, rgb(0 53 123 / 94%) 0%, rgb(29 60 105 / 82%) 52%, rgb(77 115 176 / 34%) 100%),
+                linear-gradient(0deg, rgb(25 25 25 / 25%), transparent 65%);
+            content: "";
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 94px 0 104px;
+            display: grid;
+            align-items: center;
+        }
+
+        .eyebrow {
+            margin: 0 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--sand);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 28px;
+            height: 2px;
+            background: var(--terracotta);
+            content: "";
+        }
+
+        h1 {
+            max-width: 730px;
+            margin: 0;
+            font-family: var(--serif-font);
+            font-size: clamp(44px, 7vw, 78px);
+            font-weight: 500;
+            letter-spacing: -1.5px;
+            line-height: 1.02;
+        }
+
+        h1 span {
+            color: var(--sand);
+            font-family: var(--script-font);
+            font-size: 1.05em;
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+
+        .hero-copy {
+            max-width: 590px;
+            margin: 24px 0 32px;
+            color: var(--mist);
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .primary-button {
+            min-height: 49px;
+            padding: 0 21px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background: linear-gradient(110deg, var(--navy), var(--blue));
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 22px rgb(0 0 0 / 20%);
+        }
+
+        .hero-note {
+            aspect-ratio: 1;
+            position: absolute;
+            right: max(24px, calc((100% - 1160px) / 2));
+            bottom: 28px;
+            z-index: 2;
+            margin: 0;
+            color: var(--mist);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .welcome {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 82px 0 90px;
+        }
+
+        .section-heading {
+            max-width: 660px;
+            margin: 0 0 36px;
+        }
+
+        .section-label {
+            margin: 0 0 13px;
+            color: var(--terracotta);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            color: var(--deep-blue);
+            font-family: var(--display-font);
+            font-size: clamp(30px, 4vw, 42px);
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+        }
+
+        .section-heading p {
+            max-width: 600px;
+            margin: 14px 0 0;
+            color: var(--ink);
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 19px;
+        }
+
+        .feature {
+            min-height: 225px;
+            padding: 27px;
+            border: 1px solid var(--mist);
+            border-radius: 4px;
+            background: #fff;
+            transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-4px);
+            border-color: var(--blue);
+            box-shadow: 0 14px 34px rgb(29 60 105 / 12%);
+        }
+
+        .feature-number {
+            width: 42px;
+            height: 42px;
+            margin-bottom: 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 4px;
+            background: var(--mist);
+            color: var(--navy);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .feature h3 {
+            margin: 0 0 10px;
+            color: var(--deep-blue);
+            font-family: var(--display-font);
+            font-size: 21px;
+            font-weight: 600;
+        }
+
+        .feature p {
+            margin: 0 0 17px;
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        .feature a {
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .feature a:hover {
+            text-decoration: underline;
+        }
+
+        .about {
+            padding: 72px 24px;
+            background: var(--mist);
+        }
+
+        .about-inner,
+        .who-inner {
+            width: min(1040px, 100%);
+            margin: 0 auto;
+        }
+
+        .about h2,
+        .who h2 {
+            margin: 0 0 16px;
+            color: var(--deep-blue);
+            font-family: var(--display-font);
+            font-size: clamp(30px, 4vw, 42px);
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .about-copy {
+            max-width: 760px;
+            margin: 0;
+            color: var(--ink);
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .who {
+            padding: 76px 24px;
+            background: linear-gradient(120deg, var(--navy), var(--deep-blue) 70%, var(--blue));
+            color: #fff;
+        }
+
+        .who-inner {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .who h2 {
+            margin-bottom: 0;
+            color: #fff;
+        }
+
+        .who-copy {
+            margin: 0;
+            color: var(--mist);
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .contact {
+            padding: 60px 24px;
+            background: linear-gradient(110deg, var(--navy), var(--deep-blue) 70%, var(--blue));
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin: 0 0 13px;
+            font-family: var(--display-font);
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .contact p {
+            max-width: 570px;
+            margin: 0 auto 24px;
+            color: var(--mist);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .site-footer {
+            padding: 42px 24px;
+            background: var(--ink);
+            color: var(--mist);
+        }
+
+        .footer-inner {
+            width: min(1160px, 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: start;
+            gap: 36px;
+        }
+
+        .footer-intro {
+            margin: 0;
+            color: var(--sand);
+            font-family: var(--script-font);
+            font-size: clamp(21px, 3vw, 28px);
+            line-height: 1.6;
+        }
+
+        .footer-contact {
+            display: grid;
+            gap: 9px;
+            font-size: 14px;
+        }
+
+        .footer-contact p {
+            margin: 0;
+        }
+
+        .footer-contact a {
+            color: var(--mist);
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            color: var(--sand);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 760px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                width: calc(100% - 28px);
+                min-height: 68px;
+                gap: 12px;
+            }
+
+            .brand img {
+                width: 58px;
+                height: 58px;
+            }
+
+            .menu {
+                gap: 13px;
+            }
+
+            .menu a {
+                font-size: 12px;
+            }
+
+            .menu a[href="home.html"],
+            .menu .nav-services {
+                display: none;
+            }
+
+            .hero-inner,
+            .welcome {
+                width: calc(100% - 36px);
+            }
+
+            h1 {
+                letter-spacing: -1.8px;
+            }
+
+            .hero {
+                min-height: 540px;
+            }
+
+            .hero-inner {
+                padding: 76px 0 96px;
+            }
+
+            .hero-copy {
+                font-size: 15px;
+            }
+
+            .hero-note {
+                right: 18px;
+                bottom: 20px;
+                font-size: 9px;
+            }
+
+            .welcome {
+                padding: 64px 0;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature {
+                min-height: auto;
+            }
+
+            .about,
+            .who {
+                padding: 58px 18px;
+            }
+
+            .who-inner,
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .site-footer {
+                padding: 34px 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main menu">
+            <a class="brand" href="home.html" aria-label="Engineering home">
+                <img src="../ACTIVITY 6/officiallogo.png" alt="Engineering">
+            </a>
+            <div class="menu">
+                <a href="home.html" aria-current="page">Home</a>
+                <a class="nav-services" href="services.html">Services</a>
+                <a href="#about">About</a>
+                <a href="#who-we-are">Who we are</a>
+                <a class="nav-cta" href="services.html">Explore services</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="welcome-title">
+            <img class="hero-image" src="images (3).jpg" alt="Engineering team reviewing construction plans on site">
+            <div class="hero-inner">
+                <div>
+                    <p class="eyebrow">Engineering · Infrastructure · Planning</p>
+                    <h1 id="welcome-title">Engineering better ways <span>to build.</span></h1>
+                    <p class="hero-copy">Thoughtful engineering turns complex challenges into clear plans, practical designs, and lasting places.</p>
+                    <a class="primary-button" href="#welcome">Explore our expertise</a>
+                </div>
+            </div>
+            <p class="hero-note">Designed for what comes next</p>
+        </section>
+
+        <section class="welcome" id="welcome">
+            <div class="section-heading">
+                <p class="section-label">Areas of engineering</p>
+                <h2>Strong projects start with a clear foundation.</h2>
+                <p>Explore engineering disciplines involved in planning and shaping the built environment.</p>
+            </div>
+            <div class="feature-grid">
+                <article class="feature">
+                    <div class="feature-number" aria-hidden="true">01</div>
+                    <h3>Structural engineering</h3>
+                    <p>Structural analysis and design considerations for buildings and other structures.</p>
+                    <a href="services.html">Explore services &rarr;</a>
+                </article>
+                <article class="feature">
+                    <div class="feature-number" aria-hidden="true">02</div>
+                    <h3>Civil &amp; infrastructure</h3>
+                    <p>Site and infrastructure planning considerations for the spaces around a project.</p>
+                    <a href="services.html">Explore services &rarr;</a>
+                </article>
+                <article class="feature">
+                    <div class="feature-number" aria-hidden="true">03</div>
+                    <h3>Project planning</h3>
+                    <p>Clarify project goals, site context, and design constraints to guide the next steps.</p>
+                    <a href="services.html">Explore services &rarr;</a>
+                </article>
+            </div>
+        </section>
+        <section class="about" id="about" aria-labelledby="about-title">
+            <div class="about-inner">
+                <p class="section-label">About</p>
+                <h2 id="about-title">A space for engineering ideas.</h2>
+                <p class="about-copy">This website introduces engineering disciplines and shares general information about planning for the built environment. It brings together topics including structural engineering, civil infrastructure, and project planning. Its visual style follows the engineering moodboard’s blue, sand, terracotta, and mist palette.</p>
+            </div>
+        </section>
+        <section class="who" id="who-we-are" aria-labelledby="who-title">
+            <div class="who-inner">
+                <div>
+                    <p class="section-label">Who we are</p>
+                    <h2 id="who-title">Meet the person behind this site.</h2>
+                </div>
+                <p class="who-copy">I am Glyza Mae A. Cosico, and this is my engineering-themed website. I like to study math, and I like blue. Here, I bring those interests together with general information about engineering.</p>
+            </div>
+        </section>
+        <section class="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title">Start with the project in mind.</h2>
+            <p>Outline the goals, the site, and the questions you want to resolve. A clear brief helps set the direction for the next steps.</p>
+            <a class="primary-button" href="services.html">View engineering services</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-intro">i am glyza mae a cosico. i like to study math. I like blue.</p>
+            <div class="footer-contact" aria-label="Contact details">
+                <p>Name: Glyza Mae A. Cosico</p>
+                <p>Email: <a href="mailto:glyzacosico@gmail.com">glyzacosico@gmail.com</a></p>
+                <p>Contact number: <a href="tel:09930595028">09930595028</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

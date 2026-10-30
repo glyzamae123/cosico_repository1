@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore engineering, infrastructure, and project planning services.">
+    <title>Engineering | Built with purpose</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #132c45;
+            --muted: #617386;
+            --blue: #1268d3;
+            --pale: #edf5fb;
+            --line: #dce7ef;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 82px;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgb(255 255 255 / 96%);
+            border-bottom: 1px solid rgb(220 231 239 / 75%);
+            backdrop-filter: blur(12px);
+        }
+
+        .navbar {
+            width: min(1160px, calc(100% - 48px));
+            min-height: 76px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--ink);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px 10px 10px 3px;
+            background: linear-gradient(145deg, #1474df, #10a7b5);
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 0;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .menu a {
+            color: #506477;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 160ms ease;
+        }
+
+        .menu a:hover,
+        .menu a:focus-visible {
+            color: var(--blue);
+        }
+
+        .menu .nav-cta {
+            padding: 12px 17px;
+            border-radius: 7px;
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .menu .nav-cta:hover,
+        .menu .nav-cta:focus-visible {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        a:focus-visible {
+            outline: 3px solid #68b9f4;
+            outline-offset: 4px;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 610px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: #102d4a;
+            color: #fff;
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 48%;
+        }
+
+        .hero::before {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(105deg, rgb(8 35 63 / 96%) 0%, rgb(11 62 105 / 85%) 48%, rgb(10 104 165 / 38%) 100%),
+                linear-gradient(0deg, rgb(8 35 63 / 25%), transparent 60%);
+            content: "";
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 100px 0 110px;
+        }
+
+        .eyebrow {
+            margin: 0 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: #a9dcff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 28px;
+            height: 2px;
+            background: #42c4d1;
+            content: "";
+        }
+
+        .hero h1 {
+            max-width: 730px;
+            margin: 0;
+            font-size: clamp(44px, 7vw, 78px);
+            font-weight: 700;
+            letter-spacing: -3px;
+            line-height: 1.04;
+        }
+
+        .hero h1 span {
+            color: #7fd8e2;
+        }
+
+        .hero-copy {
+            max-width: 590px;
+            margin: 24px 0 32px;
+            color: #e0edf7;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .button {
+            min-height: 50px;
+            padding: 0 21px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            background: linear-gradient(110deg, #1681e8, #12a4b4);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgb(0 0 0 / 20%);
+        }
+
+        .button-secondary {
+            border-color: rgb(255 255 255 / 48%);
+            background: rgb(255 255 255 / 8%);
+        }
+
+        .hero-note {
+            position: absolute;
+            right: max(24px, calc((100% - 1160px) / 2));
+            bottom: 34px;
+            z-index: 2;
+            margin: 0;
+            color: rgb(255 255 255 / 78%);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .intro {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 88px 0 44px;
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            align-items: start;
+            gap: 70px;
+        }
+
+        .section-label {
+            margin: 5px 0 0;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .intro h2,
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(30px, 4vw, 43px);
+            letter-spacing: -1.7px;
+            line-height: 1.15;
+        }
+
+        .intro-copy {
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.85;
+        }
+
+        .services {
+            padding: 48px 0 92px;
+            background: #f4f8fb;
+        }
+
+        .section-inner {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin: 0 0 36px;
+        }
+
+        .section-heading .section-label {
+            margin-bottom: 13px;
+        }
+
+        .section-heading p {
+            margin: 15px 0 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            min-height: 245px;
+            padding: 29px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            background: #fff;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 34px rgb(19 44 69 / 9%);
+        }
+
+        .service-number {
+            width: 43px;
+            height: 43px;
+            margin-bottom: 25px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background: linear-gradient(145deg, #e1f2ff, #e2f7f6);
+            color: #1475c8;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .service-card h3 {
+            margin: 0 0 11px;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+        }
+
+        .service-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .approach {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 86px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .approach-panel {
+            min-height: 300px;
+            padding: 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #0d426f, #0c829c);
+            color: #fff;
+        }
+
+        .approach-panel p {
+            max-width: 360px;
+            margin: 0;
+            font-size: clamp(24px, 3vw, 34px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.25;
+        }
+
+        .approach-copy .section-label {
+            margin-bottom: 14px;
+        }
+
+        .approach-copy h2 {
+            margin: 0 0 17px;
+            font-size: clamp(30px, 4vw, 40px);
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+        }
+
+        .approach-copy > p:last-child {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .contact {
+            padding: 63px 24px;
+            background: linear-gradient(110deg, #0d426f, #1268a5 65%, #118e9c);
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin: 0 0 13px;
+            font-size: clamp(28px, 4vw, 40px);
+            letter-spacing: -1.5px;
+        }
+
+        .contact p {
+            max-width: 560px;
+            margin: 0 auto;
+            color: #dceefa;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .site-footer {
+            padding: 22px 24px;
+            background: #102b43;
+            color: #c5d3df;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .site-footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 760px) {
+            .navbar,
+            .hero-content,
+            .intro,
+            .section-inner,
+            .approach {
+                width: min(100% - 36px, 1160px);
+            }
+
+            .menu {
+                gap: 19px;
+            }
+
+            .menu a {
+                font-size: 13px;
+            }
+
+            .hero {
+                min-height: 570px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .intro {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding-top: 68px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                min-height: auto;
+            }
+
+            .approach {
+                grid-template-columns: 1fr;
+                gap: 34px;
+                padding: 68px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                width: calc(100% - 28px);
+                min-height: 68px;
+                gap: 12px;
+            }
+
+            .brand {
+                gap: 8px;
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            .brand-mark {
+                width: 32px;
+                height: 32px;
+            }
+
+            .menu {
+                gap: 13px;
+            }
+
+            .menu a {
+                font-size: 12px;
+            }
+
+            .menu .nav-cta {
+                padding: 10px 11px;
+            }
+
+            .hero-content,
+            .intro,
+            .section-inner,
+            .approach {
+                width: calc(100% - 36px);
+            }
+
+            .hero {
+                min-height: 560px;
+            }
+
+            .hero-content {
+                padding: 80px 0 100px;
+            }
+
+            .hero-copy {
+                font-size: 15px;
+            }
+
+            .hero-note {
+                right: 18px;
+                bottom: 22px;
+                font-size: 9px;
+            }
+
+            .services {
+                padding: 38px 0 65px;
+            }
+
+            .approach-panel {
+                min-height: 240px;
+                padding: 27px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="Engineering home">
+                <span class="brand-mark" aria-hidden="true">E</span>
+                <span>ENGINEERING</span>
+            </a>
+            <div class="menu">
+                <a href="#services">Services</a>
+                <a href="#approach">Approach</a>
+                <a class="nav-cta" href="#contact">Get in touch</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <img class="hero-image" src="images (1).jpg" alt="Hard hat resting on engineering blueprints">
+            <div class="hero-content">
+                <p class="eyebrow">Engineering · Infrastructure · Planning</p>
+                <h1 id="hero-title">Engineering better ways <span>to build.</span></h1>
+                <p class="hero-copy">Thoughtful engineering turns complex challenges into clear plans, practical designs, and lasting places.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#services">Explore our services</a>
+                    <a class="button button-secondary" href="#approach">Our approach</a>
+                </div>
+            </div>
+            <p class="hero-note">Designed for what comes next</p>
+        </section>
+
+        <section class="intro" aria-labelledby="intro-title">
+            <p class="section-label">Built on good thinking</p>
+            <div>
+                <h2 id="intro-title">Strong projects start with a clear foundation.</h2>
+                <p class="intro-copy">From early planning to technical design, engineering brings people, places, and practical needs together. Explore services that support each step of a project.</p>
+            </div>
+        </section>
+
+        <section class="services" id="services" aria-labelledby="services-title">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <p class="section-label">What we do</p>
+                    <h2 id="services-title">Engineering services</h2>
+                    <p>Considered support for the planning and design of buildings and infrastructure.</p>
+                </div>
+                <div class="service-grid">
+                    <article class="service-card">
+                        <div class="service-number" aria-hidden="true">01</div>
+                        <h3>Structural engineering</h3>
+                        <p>Structural concepts and design support to help projects meet their functional and site requirements.</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-number" aria-hidden="true">02</div>
+                        <h3>Civil &amp; infrastructure</h3>
+                        <p>Practical civil engineering considerations for site development and essential infrastructure.</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-number" aria-hidden="true">03</div>
+                        <h3>Project planning</h3>
+                        <p>Early-stage planning that helps clarify project needs, constraints, and the next steps in design.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="approach" id="approach" aria-labelledby="approach-title">
+            <div class="approach-panel" aria-hidden="true">
+                <p>Good design connects detail with the bigger picture.</p>
+            </div>
+            <div class="approach-copy">
+                <p class="section-label">Our approach</p>
+                <h2 id="approach-title">Make the complex clear.</h2>
+                <p>Every project has its own goals and constraints. A considered engineering process starts by understanding both, then develops practical solutions around the people who will use and build them.</p>
+            </div>
+        </section>
+
+        <section class="contact" id="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title">Let’s shape what comes next.</h2>
+            <p>Have a project in mind? Start with a clear brief, the goals you want to reach, and the questions you need answered.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Engineering. Built with purpose.</p>
+    </footer>
+</body>
+</html>
